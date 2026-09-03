@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ITEMS 50
+
+struct Item {
+    int id;
+    char name[30];
+    int quantity;
+    float price;
+};
+
+struct Item inventory[MAX_ITEMS];
+int item_count = 0;
+
+void add_item() {
+    if (item_count >= MAX_ITEMS) {
+        printf("Inventory manifest is completely full.\n");
+        return;
+    }
+    struct Item newItem;
+    newItem.id = item_count + 101;
+
+    printf("Enter production stock name (no spaces): ");
+    scanf("%29s", newItem.name);
+    printf("Enter current stock count: ");
+    scanf("%d", &newItem.quantity);
+    printf("Enter price per unit: ");
+    scanf("%f", &newItem.price);
+
+    inventory[item_count] = newItem;
+    item_count++;
+    printf("Successfully registered entry! Assigned ID: %d\n", newItem.id);
+}
+
+void search_item() {
+    int target_id, found = 0;
+    printf("Enter explicit Item ID to lookup: ");
+    scanf("%d", &target_id);
+
+    for (int i = 0; i < item_count; i++) {
+        if (inventory[i].id == target_id) {
+            printf("\n--- Match Identified ---\n");
+            printf("ID: %d | Name: %s | Qty: %d | Price: $%.2f\n", 
+                   inventory[i].id, inventory[i].name, inventory[i].quantity, inventory[i].price);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) printf("No record matches the provided identifier.\n");
+}
+
+int main() {
+    int mode;
+    while (1) {
+        printf("\n=== Stock Warehouse System ===\n");
+        printf("1. Register Asset\n2. Locate Item Details\n3. Exit System\n");
+        printf("Action: ");
+        scanf("%d", &mode);
+
+        if (mode == 1) add_item();
+        else if (mode == 2) search_item();
+        else if (mode == 3) break;
+        else printf("Instruction command unrecognized.\n");
+    }
+    return 0;
+}
