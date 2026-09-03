@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[50];
+    printf("Enter repeating text string (e.g. aaabbb): ");
+    scanf("%49s", text);
+
+    printf("Compressed Output: ");
+    for (int i = 0; text[i] != '\0'; i++) {
+        int count = 1;
+        while (text[i] == text[i + 1]) {
+            count++;
+            i++;
+        }
+        printf("%c%d", text[i], count);
+    }
+    printf("\n");
+    return 0;
+}
