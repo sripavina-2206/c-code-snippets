@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() {
+    double balance = 1000.00; // Starting baseline funds
+    int selection;
+    double amount;
+
+    while (1) {
+        printf("\n=== Automated Teller System ===\n");
+        printf("1. Check Balance\n2. Deposit Capital\n3. Withdraw Capital\n4. Exit Terminal\n");
+        printf("Select option code: ");
+        scanf("%d", &selection);
+
+        switch (selection) {
+            case 1:
+                printf("Current Account Balance: $%.2lf\n", balance);
+                break;
+            case 2:
+                printf("Enter deposit sum value: $");
+                scanf("%lf", &amount);
+                if (amount > 0) {
+                    balance += amount;
+                    printf("Deposit processed successfully. Updated balance: $%.2lf\n", balance);
+                } else {
+                    printf("Invalid input amount.\n");
+                }
+                break;
+            case 3:
+                printf("Enter withdrawal sum value: $");
+                scanf("%lf", &amount);
+                if (amount > balance) {
+                    printf("Transaction Rejected: Insufficient transactional funds.\n");
+                } else if (amount <= 0) {
+                    printf("Invalid withdrawal amount.\n");
+                } else {
+                    balance -= amount;
+                    printf("Dispensing cash. Updated balance: $%.2lf\n", balance);
+                }
+                break;
+            case 4:
+                printf("Session finalized. Goodbye!\n");
+                return 0;
+            default:
+                printf("Invalid system command input code.\n");
+        }
+    }
+}
