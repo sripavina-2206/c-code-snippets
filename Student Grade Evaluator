@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int total_students;
+    printf("Enter population cohort size: ");
+    scanf("%d", &total_students);
+
+    if (total_students <= 0) {
+        printf("Invalid cohort size value.\n");
+        return 1;
+    }
+
+    float grades[total_students];
+    float sum = 0, max_grade = 0, min_grade = 100;
+
+    for (int i = 0; i < total_students; i++) {
+        printf("Enter exam metrics evaluation score for Student %d (0-100): ", i + 1);
+        scanf("%f", &grades[i]);
+
+        if (grades[i] < 0 || grades[i] > 100) {
+            printf("Error value bounds breach detected. Re-enter valid metric.\n");
+            i--; // Decrement sequence loop to retry index entry
+            continue;
+        }
+
+        sum += grades[i];
+        if (grades[i] > max_grade) max_grade = grades[i];
+        if (grades[i] < min_grade) min_grade = grades[i];
+    }
+
+    float average = sum / total_students;
+
+    printf("\n=== Cohort Performance Analysis Metrics ===\n");
+    printf("Calculated Cohort Average Score : %.2f%%\n", average);
+    printf("Peak Metrics Maximum Boundary   : %.2f%%\n", max_grade);
+    printf("Lowest Metrics Minimum Boundary : %.2f%%\n", min_grade);
+
+    return 0;
+}
