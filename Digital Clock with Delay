@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+    #define sleep_ms(x) Sleep(x)
+    #define CLEAR_SCREEN "cls"
+#else
+    #include <unistd.h>
+    #define sleep_ms(x) usleep((x) * 1000)
+    #define CLEAR_SCREEN "clear"
+#endif
+
+int main() {
+    int hour = 0, minute = 0, second = 0;
+
+    printf("Set initial time (HH MM SS): ");
+    if (scanf("%d %d %d", &hour, &minute, &second) != 3) {
+        printf("Invalid input format.\n");
+        return 1;
+    }
+
+    if (hour > 23 || minute > 59 || second > 59) {
+        printf("Invalid time parameters configured.\n");
+        return 1;
+    }
+
+    while (1) {
+        system(CLEAR_SCREEN);
+        
+        printf("=====================\n");
+        printf("    🕒 %02d:%02d:%02d    \n", hour, minute, second);
+        printf("=====================\n");
+        printf("Press Ctrl+C to terminate application.\n");
+
+        sleep_ms(1000);
+        second++;
+
+        if (second == 60) {
+            minute++;
+            second = 0;
+        }
+        if (minute == 60) {
+            hour++;
+            minute = 0;
+        }
+        if (hour == 24) {
+            hour = 0;
+        }
+    }
+    return 0;
+}
