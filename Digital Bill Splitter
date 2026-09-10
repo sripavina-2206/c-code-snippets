@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    float bill, tip_percent, total_bill, share;
+    int people;
+
+    printf("=== Expense Splitter ===\n");
+    printf("Enter total bill amount: $");
+    scanf("%f", &bill);
+    printf("Enter tip percentage (e.g., 10, 15): ");
+    scanf("%f", &tip_percent);
+    printf("Number of people splitting: ");
+    scanf("%d", &people);
+
+    // Calculations
+    total_bill = bill + (bill * (tip_percent / 100));
+    share = total_bill / people;
+
+    printf("\n--- Results ---\n");
+    printf("Total Bill (with tip): $%.2f\n", total_bill);
+    printf("Each person pays: $%.2f\n", share);
+
+    return 0;
+}
