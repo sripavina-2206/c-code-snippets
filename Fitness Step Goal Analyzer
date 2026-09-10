@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int steps;
+    int total_steps = 0;
+    float average;
+    int target = 10000; // Recommended daily steps target
+
+    printf("=== 3-Day Step Tracker ===\n\n");
+
+    // Loop through 3 days of input
+    for (int i = 1; i <= 3; i++) {
+        printf("Enter step count for Day %d: ", i);
+        scanf("%d", &steps);
+        total_steps += steps;
+    }
+
+    average = total_steps / 3.0;
+
+    printf("\n--- Performance Tracking Metrics ---\n");
+    printf("Total Steps Walked: %d\n", total_steps);
+    printf("Average Daily Steps: %.1f\n", average);
+
+    if (average >= target) {
+        printf("Result: SUCCESS! You maintained a healthy step average.\n");
+    } else {
+        printf("Result: GOAL NOT MET. You missed your average target by %.1f steps.\n", target - average);
+    }
+
+    return 0;
+}
