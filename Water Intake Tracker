@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int target = 2500; // Daily recommended water intake in ml
+    int current = 0;
+    int choice, amount;
+
+    printf("=== Daily Water Tracker ===\n");
+    printf("Your target goal is %d ml per day.\n", target);
+
+    while (1) {
+        printf("\n1. Log water intake\n");
+        printf("2. Check status\n");
+        printf("3. Exit\n");
+        printf("Choose an option: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            printf("Enter amount consumed (in ml): ");
+            scanf("%d", &amount);
+            current += amount;
+            printf("Logged! Total so far: %d ml\n", current);
+        } else if (choice == 2) {
+            printf("\n--- Progress Summary ---\n");
+            printf("Consumed: %d ml / %d ml\n", current, target);
+            if (current >= target) {
+                printf("Great job! You reached your daily goal!\n");
+            } else {
+                printf("You need %d ml more to hit your goal.\n", target - current);
+            }
+        } else if (choice == 3) {
+            printf("Keep staying hydrated! Goodbye.\n");
+            break;
+        } else {
+            printf("Invalid selection!\n");
+        }
+    }
+    return 0;
+}
