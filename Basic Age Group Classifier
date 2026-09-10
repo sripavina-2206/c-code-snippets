@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int birth_year, age;
+    int current_year = 2026;
+
+    printf("=== Age Group Finder ===\n");
+    printf("Enter your year of birth (e.g., 2005): ");
+    scanf("%d", &birth_year);
+
+    age = current_year - birth_year;
+    printf("\nYou are currently %d years old.\n", age);
+
+    // Grouping logic
+    if (age < 0) {
+        printf("Classification: Invalid input year!\n");
+    } else if (age <= 12) {
+        printf("Classification: Child\n");
+    } else if (age <= 19) {
+        printf("Classification: Teenager\n");
+    } else if (age <= 64) {
+        printf("Classification: Adult\n");
+    } else {
+        printf("Classification: Senior Citizen\n");
+    }
+
+    return 0;
+}
